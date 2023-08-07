@@ -6,7 +6,7 @@ from scipy.spatial.distance import cdist
 from typing import Generator
 
 
-class Sensing:
+class UDPConverter:
     def __init__(self, header_size: int = 2, sensing_range: float = 1.0) -> None:
         self._header_size = header_size
         self._sensing_range = sensing_range
@@ -48,6 +48,10 @@ class Sensing:
                 'detected': dets[i]
             }
             yield drone_id, result
+
+    def commands_to_udp(self, commands: list) -> tuple:
+        # TODO: add IDs
+        return tuple([x for xs in commands for x in xs])
 
 
 
